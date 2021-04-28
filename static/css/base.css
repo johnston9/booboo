@@ -2,9 +2,9 @@ html {
     height: 100%;
 }
 
-.header-container {
+/*.header-container {
     padding-top: 164px;
-}
+}*/
 
 body {
     background: url('/media/pics/homepage_background_cropped.jpg') no-repeat center center fixed;
@@ -96,5 +96,16 @@ body {
 
     .header-container {
         padding-top: 164px;
+    }
+}
+
+/* pad the top a bit when navbar is collapsed on mobile */
+@media (max-width: 991px) {
+    .header-container {
+        padding-top: 116px;
+    }
+
+    body {
+        height: calc(100vh - 116px);
     }
 }
