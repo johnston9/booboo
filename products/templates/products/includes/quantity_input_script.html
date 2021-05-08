@@ -1,13 +1,15 @@
 <script type="text/javascript">
 
-          $('#hide').click(function() {
-          var currentValue = parseInt($('#quantity').val());
-            if (isNaN(currentValue)) {
+          $('#update').click(function() {
+            var itemId = $(this).data('item_id');
+            var currentValue = parseInt($(`#id_qty_${itemId}`).val());
+            console.log(currentValue)
+            if(isNaN(currentValue)) {
               alert("Please Enter Quantity")
-            }
+            }            
         });
 
-    // Increment quantity
+    // Increment quantity 
     $('.increment-qty').click(function(e) {
        e.preventDefault();
        var closestInput = $(this).closest('.input-group').find('.qty_input')[0];

@@ -82,10 +82,20 @@
                                                         <input type="hidden" name="product_size" value="{{ item.size }}">
                                                     {% endif %}
                                                 </div>
+                                                <input data-item_id="{{ item.item_id }}" id="update" type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Update">
+                                                {% if item.product.has_sizes %}
+                                                <a href="{% url 'remove_from_bag_sizes' item.item_id item.size %}" class="btn btn-outline-black rounded-0">
+                                                    <span class="text-uppercase">Remove</span>
+                                                </a>
+                                                {% else %}
+                                                <a href="{% url 'remove_from_bag' item.item_id %}" class="btn btn-outline-black rounded-0">
+                                                    <span class="text-uppercase">Remove</span>
+                                                </a>
+                                                {% endif %}
                                             </div>
                                         </form>
-                                        <a class="update-link text-info"><small>Update</small></a>
-                                        <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}"><small>Remove</small></a>
+                                    
+                                        <!--<a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}"><small>Remove</small></a>-->
                                     </td>
                                     <td class="py-3">
                                         <p class="my-0">${{ item.product.price | calc_subtotal:item.quantity }}</p>
