@@ -52,7 +52,7 @@ class Order(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        
+
         return self.order_number
 
 
