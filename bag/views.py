@@ -81,7 +81,6 @@ def remove_from_bag_sizes(request, item_id, item_size):
     """Remove the item from the shopping bag"""
 
     try:
-
         product = get_object_or_404(Product, pk=item_id)
         bag = request.session.get('bag', {})
 
@@ -102,7 +101,6 @@ def remove_from_bag(request, item_id):
     """Remove the item from the shopping bag"""
 
     try:
-
         product = get_object_or_404(Product, pk=item_id)
         bag = request.session.get('bag', {})
 

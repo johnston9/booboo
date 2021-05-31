@@ -1,0 +1,45 @@
+<form class="form update-form" method="POST" action="{% url 'adjust_bag' item.item_id %}">
+    {% csrf_token %}
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <button class="decrement-qty btn btn-sm btn-black rounded-0" 
+                    data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                    <span>
+                        <i class="fas fa-minus fa-sm"></i>
+                    </span>
+                </button>
+            </div>
+            <input class="form-control form-control-sm qty_input" type="number"
+                name="quantity" value="{{ item.quantity }}" min="1" max="99"
+                data-item_id="{{ item.item_id }}"
+                id="id_qty_{{ item.item_id }}">
+            <div class="input-group-append">
+                <button class="increment-qty btn btn-sm btn-black rounded-0"
+                    data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                    <span>
+                        <i class="fas fa-plus fa-sm"></i>
+                    </span>
+                </button>
+            </div>
+            {% if item.product.has_sizes %}
+                <input type="hidden" name="product_size" value="{{ item.size }}">
+            {% endif %}
+        </div>
+        <!--input button-->
+        <input data-item_id="{{ item.item_id }}" id="update" type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Update">
+        <!--remove button-->
+        {% if item.product.has_sizes %}
+        <a href="{% url 'remove_from_bag_sizes' item.item_id item.size %}" class="btn btn-outline-black rounded-0 right mt-5" onclick="return confirm('Are you sure you want to remove this item?');"onclick="return confirm('Are you sure you want to remove this item?');">
+            <span class="text-uppercase">Remove</span>
+        </a>
+        {% else %}
+        <a href="{% url 'remove_from_bag' item.item_id %}" class="btn btn-outline-black rounded-0 right mt-5" onclick="return confirm('Are you sure you want to remove this item?');">
+            <span class="text-uppercase">Remove</span>
+        </a>
+        {% endif %}
+    </div>
+</form>
+
+<!--<a class="update-link text-info"><small>Update</small></a>-->
+<!--<a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}"><small>Remove</small></a>-->
